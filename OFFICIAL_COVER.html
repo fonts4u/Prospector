@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH UX Prospector - Official Cover</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #9d50bb;
+            --primary-end: #6e48aa;
+            --accent: #ff416c;
+            --bg: #0b0d17;
+            --glass: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: white;
+            width: 1280px;
+            height: 800px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        /* Abstract Background */
+        .glow-1 {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: var(--primary);
+            filter: blur(150px);
+            opacity: 0.2;
+            top: -100px;
+            right: -100px;
+            border-radius: 50%;
+        }
+
+        .glow-2 {
+            position: absolute;
+            width: 500px;
+            height: 500px;
+            background: var(--primary-end);
+            filter: blur(150px);
+            opacity: 0.15;
+            bottom: -100px;
+            left: -100px;
+            border-radius: 50%;
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+        }
+
+        /* Main Center Content */
+        .container {
+            z-index: 10;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .main-title {
+            font-size: 84px;
+            font-weight: 800;
+            letter-spacing: -3px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 30%, #a4add3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, var(--primary), #d99eff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subtitle {
+            font-size: 28px;
+            color: #888;
+            font-family: 'Inter', sans-serif;
+            margin-bottom: 60px;
+            letter-spacing: 1px;
+        }
+
+        /* Floating UI Mockup */
+        .ui-showcase {
+            position: relative;
+            width: 900px;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ui-card {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 30px;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .popup-card {
+            width: 380px;
+            z-index: 2;
+            transform: translateX(-50px);
+        }
+
+        .eval-card {
+            width: 340px;
+            transform: translateX(150px) translateY(40px) scale(0.9);
+            z-index: 1;
+            opacity: 0.8;
+            animation-delay: -3s;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(var(--tx), var(--ty)) scale(var(--s));
+            }
+
+            50% {
+                transform: translate(var(--tx), calc(var(--ty) - 20px)) scale(var(--s));
+            }
+        }
+
+        .popup-card {
+            --tx: -50px;
+            --ty: 0px;
+            --s: 1;
+        }
+
+        .eval-card {
+            --tx: 150px;
+            --ty: 40px;
+            --s: 0.9;
+        }
+
+        /* Mockup Elements */
+        .header-mock {
+            background: linear-gradient(135deg, var(--primary), var(--primary-end));
+            height: 80px;
+            border-radius: 12px 12px 0 0;
+            margin: -30px -30px 20px -30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 20px;
+        }
+
+        .btn-mock {
+            height: 45px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-end));
+            border-radius: 10px;
+            width: 100%;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 14px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .stat-box {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border);
+            height: 80px;
+            border-radius: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .stat-num {
+            font-size: 24px;
+            font-weight: 800;
+            color: #fff;
+        }
+
+        .stat-label {
+            font-size: 10px;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        .rating-grid {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .rating-box {
+            flex: 1;
+            height: 50px;
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            color: #666;
+        }
+
+        .rating-box.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+            box-shadow: 0 0 20px rgba(157, 80, 187, 0.4);
+        }
+
+        .data-line {
+            height: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 4px;
+            margin-bottom: 8px;
+            width: 100%;
+        }
+
+        .data-line.short {
+            width: 60%;
+        }
+
+        /* Badge */
+        .badge {
+            background: rgba(157, 80, 187, 0.1);
+            border: 1px solid rgba(157, 80, 187, 0.3);
+            padding: 8px 20px;
+            border-radius: 100px;
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="grid"></div>
+    <div class="glow-1"></div>
+    <div class="glow-2"></div>
+
+    <div class="container">
+        <div class="badge">Official Chrome Extension</div>
+        <h1 class="main-title">Product Hunt<br><span class="highlight">UX Prospector</span></h1>
+        <p class="subtitle">Product Hunt → SaaS → LinkedIn</p>
+
+        <div class="ui-showcase">
+            <div class="ui-card popup-card">
+                <div class="header-mock">🎯 UX Prospector</div>
+                <div class="btn-mock">🚀 Start Prospecting (Top 15)</div>
+                <div
+                    style="background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; margin-bottom: 20px; font-size: 11px; color:#aaa;">
+                    ⚠️ Must be on a Product Hunt page</div>
+                <div class="stat-grid">
+                    <div class="stat-box">
+                        <div class="stat-num">12</div>
+                        <div class="stat-label">Shortlisted</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-num">48</div>
+                        <div class="stat-label">Processed</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="ui-card eval-card">
+                <div
+                    style="font-weight: 800; font-size: 14px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px;">
+                    <div style="width: 10px; height: 10px; background: var(--primary); border-radius: 50%;"></div>
+                    UX EVALUATOR
+                </div>
+                <div class="rating-grid">
+                    <div class="rating-box">1</div>
+                    <div class="rating-box">2</div>
+                    <div class="rating-box">3</div>
+                    <div class="rating-box active">4</div>
+                    <div class="rating-box">5</div>
+                </div>
+                <div style="margin-top: 30px;">
+                    <div class="data-line"></div>
+                    <div class="data-line short"></div>
+                    <div class="data-line"></div>
+                </div>
+                <div class="btn-mock" style="margin-top: 40px; background: var(--primary);">⭐ Shortlist</div>
+            </div>
+        </div>
+
+        <div style="margin-top: 80px; font-size: 12px; color: #444; letter-spacing: 8px; text-transform: uppercase;">
+            Elevate Your Outreach Game
+        </div>
+    </div>
+</body>
+
+</html>

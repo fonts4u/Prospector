@@ -1,0 +1,975 @@
+/* ============================================
+   UX PROSPECT PANEL STYLES - PREMIUM EDITION
+   Floating overlay panel injected into SaaS websites
+   ============================================ */
+
+:root {
+  /* Premium Color Palette - HSL based */
+  --ux-primary-hue: 240;
+  --ux-primary: hsl(var(--ux-primary-hue), 85%, 65%);
+  --ux-primary-light: hsl(var(--ux-primary-hue), 85%, 75%);
+  --ux-primary-dark: hsl(var(--ux-primary-hue), 85%, 55%);
+  --ux-primary-glow: hsla(var(--ux-primary-hue), 85%, 65%, 0.3);
+
+  --ux-accent-hue: 280;
+  --ux-accent: hsl(var(--ux-accent-hue), 70%, 60%);
+
+  --ux-success: hsl(150, 65%, 50%);
+  --ux-success-bg: hsl(150, 65%, 95%);
+  --ux-success-dark: hsl(150, 70%, 30%);
+
+  --ux-error: hsl(350, 75%, 60%);
+  --ux-error-bg: hsl(350, 75%, 95%);
+  --ux-error-dark: hsl(350, 70%, 35%);
+
+  --ux-info: hsl(210, 80%, 60%);
+  --ux-info-bg: hsl(210, 80%, 95%);
+  --ux-info-dark: hsl(210, 80%, 30%);
+
+  /* Neutral Colors */
+  --ux-gray-50: hsl(220, 20%, 98%);
+  --ux-gray-100: hsl(220, 15%, 95%);
+  --ux-gray-200: hsl(220, 13%, 91%);
+  --ux-gray-300: hsl(220, 10%, 82%);
+  --ux-gray-400: hsl(220, 9%, 65%);
+  --ux-gray-500: hsl(220, 9%, 46%);
+  --ux-gray-600: hsl(220, 10%, 30%);
+  --ux-gray-700: hsl(220, 12%, 20%);
+  --ux-gray-800: hsl(220, 15%, 12%);
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes ux-panel-slide-in {
+  from {
+    transform: translateX(120%);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes ux-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(-15px) scale(0.95);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes ux-gradient-shift {
+
+  0%,
+  100% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes ux-shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+@keyframes ux-pulse-glow {
+
+  0%,
+  100% {
+    box-shadow: 0 4px 20px var(--ux-primary-glow),
+      0 2px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  50% {
+    box-shadow: 0 8px 40px var(--ux-primary-glow),
+      0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
+
+@keyframes ux-float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* ============================================
+   MAIN PANEL
+   ============================================ */
+
+.ux-prospect-panel {
+  all: initial;
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 380px !important;
+  max-width: calc(100vw - 40px) !important;
+  background: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border-radius: 20px !important;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.2),
+    0 8px 24px rgba(0, 0, 0, 0.12),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset !important;
+  z-index: 2147483647 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: var(--ux-gray-800) !important;
+  animation: ux-panel-slide-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  display: block;
+  overflow: hidden !important;
+}
+
+.ux-prospect-panel.ux-hidden {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* ============================================
+   PANEL HEADER
+   ============================================ */
+
+.ux-panel-header {
+  background: linear-gradient(135deg, var(--ux-primary) 0%, var(--ux-accent) 100%) !important;
+  background-size: 200% 200% !important;
+  animation: ux-gradient-shift 8s ease infinite !important;
+  color: white !important;
+  padding: 24px !important;
+  border-radius: 20px 20px 0 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 4px 16px var(--ux-primary-glow) !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.ux-panel-header::before {
+  content: '' !important;
+  position: absolute !important;
+  top: -50% !important;
+  right: -50% !important;
+  width: 200% !important;
+  height: 200% !important;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%) !important;
+  animation: ux-float 6s ease-in-out infinite !important;
+  pointer-events: none !important;
+}
+
+.ux-panel-header h3 {
+  all: initial !important;
+  margin: 0 !important;
+  font-size: 19px !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.4px !important;
+  color: white !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.ux-panel-close {
+  all: initial !important;
+  background: rgba(255, 255, 255, 0.2) !important;
+  backdrop-filter: blur(10px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  color: white !important;
+  font-size: 22px !important;
+  width: 40px !important;
+  height: 40px !important;
+  border-radius: 12px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  font-weight: 300 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  position: relative !important;
+  z-index: 1 !important;
+}
+
+.ux-panel-close:hover {
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: scale(1.08) rotate(90deg) !important;
+  border-color: rgba(255, 255, 255, 0.4) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ============================================
+   PANEL BODY
+   ============================================ */
+
+.ux-panel-body {
+  all: initial !important;
+  padding: 24px !important;
+  display: block !important;
+}
+
+/* ============================================
+   RATING SECTION
+   ============================================ */
+
+.ux-rating-section {
+  all: initial !important;
+  display: block !important;
+  margin-bottom: 24px !important;
+  padding-bottom: 24px !important;
+  border-bottom: 2px solid var(--ux-gray-100) !important;
+}
+
+.ux-rating-section label {
+  all: initial !important;
+  display: block !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  margin-bottom: 12px !important;
+  color: var(--ux-gray-600) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 1px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.ux-rating-buttons {
+  all: initial !important;
+  display: flex !important;
+  gap: 12px !important;
+  margin-bottom: 12px !important;
+}
+
+.ux-rating-btn {
+  all: initial !important;
+  flex: 1 !important;
+  padding: 14px 10px !important;
+  border: 2px solid var(--ux-gray-200) !important;
+  background: white !important;
+  border-radius: 12px !important;
+  font-size: 18px !important;
+  font-weight: 800 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  color: var(--ux-gray-500) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04) !important;
+}
+
+.ux-rating-btn::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: -100% !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent) !important;
+  transition: left 0.5s !important;
+}
+
+.ux-rating-btn:hover {
+  border-color: var(--ux-primary) !important;
+  background: linear-gradient(135deg, var(--ux-gray-50) 0%, white 100%) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.1) !important;
+  color: var(--ux-primary) !important;
+}
+
+.ux-rating-btn:hover::before {
+  left: 100% !important;
+}
+
+.ux-rating-btn.active {
+  background: linear-gradient(135deg, var(--ux-primary) 0%, var(--ux-accent) 100%) !important;
+  background-size: 200% 200% !important;
+  animation: ux-gradient-shift 4s ease infinite !important;
+  border-color: transparent !important;
+  color: white !important;
+  transform: scale(1.05) !important;
+  box-shadow: 0 8px 32px var(--ux-primary-glow) !important;
+}
+
+.ux-rating-section small {
+  all: initial !important;
+  display: block !important;
+  font-size: 11px !important;
+  color: var(--ux-gray-400) !important;
+  margin-top: 8px !important;
+  font-weight: 500 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.4 !important;
+}
+
+/* ============================================
+   EXTRACTED DATA SECTION
+   ============================================ */
+
+.ux-extracted-data {
+  all: initial !important;
+  display: block !important;
+  background: linear-gradient(135deg, var(--ux-gray-50) 0%, white 100%) !important;
+  border-radius: 16px !important;
+  padding: 20px !important;
+  margin-bottom: 24px !important;
+  border: 2px solid var(--ux-gray-100) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04) !important;
+}
+
+.ux-data-item {
+  all: initial !important;
+  display: block !important;
+  margin-bottom: 16px !important;
+  font-size: 13px !important;
+  line-height: 1.6 !important;
+}
+
+.ux-data-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ux-data-item strong {
+  all: initial !important;
+  display: block !important;
+  color: var(--ux-gray-700) !important;
+  font-weight: 700 !important;
+  margin-bottom: 6px !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+.ux-data-item span {
+  all: initial !important;
+  display: block !important;
+  color: var(--ux-gray-600) !important;
+  word-wrap: break-word !important;
+  font-size: 13px !important;
+  line-height: 1.5 !important;
+  padding-left: 12px !important;
+  border-left: 3px solid var(--ux-primary) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.ux-actions {
+  all: initial !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 12px !important;
+}
+
+.ux-btn {
+  all: initial !important;
+  width: 100% !important;
+  padding: 16px 24px !important;
+  border: none !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  letter-spacing: -0.1px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+.ux-btn::before {
+  content: '' !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  width: 0 !important;
+  height: 0 !important;
+  border-radius: 50% !important;
+  background: rgba(255, 255, 255, 0.3) !important;
+  transform: translate(-50%, -50%) !important;
+  transition: width 0.6s, height 0.6s !important;
+}
+
+.ux-btn:hover::before {
+  width: 400px !important;
+  height: 400px !important;
+}
+
+.ux-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.ux-btn-primary {
+  all: initial !important;
+  width: 100% !important;
+  padding: 16px 24px !important;
+  background: linear-gradient(135deg, var(--ux-primary) 0%, var(--ux-accent) 100%) !important;
+  background-size: 200% 200% !important;
+  color: white !important;
+  box-shadow: 0 8px 24px var(--ux-primary-glow) !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  letter-spacing: -0.1px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  border: none !important;
+}
+
+.ux-btn-primary:hover:not(:disabled) {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 40px var(--ux-primary-glow) !important;
+  animation: ux-pulse-glow 2s ease-in-out infinite !important;
+}
+
+.ux-btn-primary:active:not(:disabled) {
+  transform: translateY(-2px) !important;
+}
+
+.ux-btn-danger {
+  all: initial !important;
+  width: 100% !important;
+  padding: 16px 24px !important;
+  background: linear-gradient(135deg, var(--ux-error) 0%, hsl(350, 75%, 50%) 100%) !important;
+  color: white !important;
+  box-shadow: 0 8px 24px hsla(350, 75%, 60%, 0.3) !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  letter-spacing: -0.1px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  display: block !important;
+  box-sizing: border-box !important;
+  border: none !important;
+}
+
+.ux-btn-danger:hover:not(:disabled) {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 40px hsla(350, 75%, 60%, 0.4) !important;
+}
+
+.ux-btn-secondary {
+  all: initial !important;
+  width: 100% !important;
+  padding: 16px 24px !important;
+  background: linear-gradient(135deg, var(--ux-gray-100) 0%, var(--ux-gray-200) 100%) !important;
+  color: var(--ux-gray-700) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+  border: 2px solid var(--ux-gray-200) !important;
+  border-radius: 14px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  letter-spacing: -0.1px !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  display: block !important;
+  box-sizing: border-box !important;
+}
+
+.ux-btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--ux-gray-200) 0%, var(--ux-gray-300) 100%) !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ============================================
+   STATUS MESSAGES
+   ============================================ */
+
+.ux-status-msg {
+  all: initial !important;
+  display: none !important;
+  margin-top: 20px !important;
+  padding: 16px 20px !important;
+  border-radius: 12px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  animation: ux-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
+  line-height: 1.5 !important;
+  box-sizing: border-box !important;
+}
+
+.ux-status-msg.success {
+  display: block !important;
+  background: var(--ux-success-bg) !important;
+  color: var(--ux-success-dark) !important;
+  border: 2px solid var(--ux-success) !important;
+  box-shadow: 0 4px 16px hsla(150, 65%, 50%, 0.2) !important;
+}
+
+.ux-status-msg.error {
+  display: block !important;
+  background: var(--ux-error-bg) !important;
+  color: var(--ux-error-dark) !important;
+  border: 2px solid var(--ux-error) !important;
+  box-shadow: 0 4px 16px hsla(350, 75%, 60%, 0.2) !important;
+}
+
+.ux-status-msg.info {
+  display: block !important;
+  background: var(--ux-info-bg) !important;
+  color: var(--ux-info-dark) !important;
+  border: 2px solid var(--ux-info) !important;
+  box-shadow: 0 4px 16px hsla(210, 80%, 60%, 0.2) !important;
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .ux-prospect-panel {
+    width: calc(100vw - 32px) !important;
+    right: 16px !important;
+    left: 16px !important;
+    top: 16px !important;
+  }
+}
+
+/* ============================================
+   PRINT MEDIA - HIDE PANEL WHEN PRINTING
+   ============================================ */
+
+@media print {
+  .ux-prospect-panel {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.ux-btn:focus,
+.ux-rating-btn:focus,
+.ux-panel-close:focus {
+  outline: 3px solid var(--ux-primary) !important;
+  outline-offset: 3px !important;
+}
+
+.ux-btn:focus-visible,
+.ux-rating-btn:focus-visible {
+  box-shadow: 0 0 0 4px var(--ux-primary-glow) !important;
+}
+
+
+/* ============================================
+   PANEL HEADER
+   ============================================ */
+
+.ux-panel-header {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  padding: 20px !important;
+  border-radius: 16px 16px 0 0 !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: center !important;
+  box-shadow: 0 2px 10px rgba(102, 126, 234, 0.2) !important;
+}
+
+.ux-panel-header h3 {
+  margin: 0 !important;
+  font-size: 17px !important;
+  font-weight: 700 !important;
+  letter-spacing: -0.3px !important;
+  color: white !important;
+}
+
+.ux-panel-close {
+  background: rgba(255, 255, 255, 0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: white !important;
+  font-size: 20px !important;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 8px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  line-height: 1 !important;
+  padding: 0 !important;
+  font-weight: 300 !important;
+}
+
+.ux-panel-close:hover {
+  background: rgba(255, 255, 255, 0.25) !important;
+  transform: scale(1.05) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
+
+/* ============================================
+   PANEL BODY
+   ============================================ */
+
+.ux-panel-body {
+  padding: 20px !important;
+}
+
+/* ============================================
+   RATING SECTION
+   ============================================ */
+
+.ux-rating-section {
+  margin-bottom: 20px !important;
+  padding-bottom: 20px !important;
+  border-bottom: 2px solid #f1f3f5 !important;
+}
+
+.ux-rating-section label {
+  display: block !important;
+  font-weight: 700 !important;
+  font-size: 12px !important;
+  margin-bottom: 10px !important;
+  color: #495057 !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.5px !important;
+}
+
+.ux-rating-buttons {
+  display: flex !important;
+  gap: 10px !important;
+  margin-bottom: 8px !important;
+}
+
+.ux-rating-btn {
+  flex: 1 !important;
+  padding: 12px 8px !important;
+  border: 2px solid #e9ecef !important;
+  background: white !important;
+  border-radius: 10px !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  color: #6c757d !important;
+  position: relative !important;
+  overflow: hidden !important;
+}
+
+.ux-rating-btn:hover {
+  border-color: #667eea !important;
+  background: linear-gradient(135deg, #f8f9ff 0%, #fff 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15) !important;
+  color: #667eea !important;
+}
+
+.ux-rating-btn.active {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  border-color: #667eea !important;
+  color: white !important;
+  transform: scale(1.08) !important;
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4) !important;
+}
+
+.ux-rating-section small {
+  display: block !important;
+  font-size: 11px !important;
+  color: #868e96 !important;
+  margin-top: 6px !important;
+  font-weight: 500 !important;
+}
+
+/* ============================================
+   EXTRACTED DATA SECTION
+   ============================================ */
+
+.ux-extracted-data {
+  background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%) !important;
+  border-radius: 12px !important;
+  padding: 16px !important;
+  margin-bottom: 20px !important;
+  border: 1px solid #e9ecef !important;
+}
+
+.ux-data-item {
+  margin-bottom: 12px !important;
+  font-size: 12px !important;
+  line-height: 1.5 !important;
+}
+
+.ux-data-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+.ux-data-item strong {
+  display: block !important;
+  color: #343a40 !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px !important;
+  font-size: 11px !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.3px !important;
+}
+
+.ux-data-item span {
+  display: block !important;
+  color: #495057 !important;
+  word-wrap: break-word !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  padding-left: 8px !important;
+  border-left: 2px solid #dee2e6 !important;
+}
+
+/* ============================================
+   ACTION BUTTONS
+   ============================================ */
+
+.ux-actions {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+}
+
+.ux-btn {
+  width: 100% !important;
+  padding: 14px 20px !important;
+  border: none !important;
+  border-radius: 12px !important;
+  font-size: 14px !important;
+  font-weight: 700 !important;
+  cursor: pointer !important;
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  text-align: center !important;
+  position: relative !important;
+  overflow: hidden !important;
+  letter-spacing: 0.3px !important;
+}
+
+.ux-btn:disabled {
+  opacity: 0.5 !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+}
+
+.ux-btn-primary {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3) !important;
+}
+
+.ux-btn-primary:hover:not(:disabled) {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(102, 126, 234, 0.5) !important;
+}
+
+.ux-btn-primary:active:not(:disabled) {
+  transform: translateY(-1px) !important;
+}
+
+.ux-btn-danger {
+  background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(220, 53, 69, 0.3) !important;
+}
+
+.ux-btn-danger:hover:not(:disabled) {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(220, 53, 69, 0.5) !important;
+}
+
+.ux-btn-secondary {
+  background: linear-gradient(135deg, #f1f3f5 0%, #e9ecef 100%) !important;
+  color: #495057 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid #dee2e6 !important;
+}
+
+.ux-btn-secondary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #e9ecef 0%, #dee2e6 100%) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+/* ============================================
+   STATUS MESSAGES
+   ============================================ */
+
+.ux-status-msg {
+  margin-top: 16px !important;
+  padding: 12px 16px !important;
+  border-radius: 10px !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  display: none !important;
+  animation: ux-fade-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) !important;
+  backdrop-filter: blur(10px) !important;
+}
+
+.ux-status-msg.success {
+  background: linear-gradient(135deg, #d3f9e3 0%, #c3f0d6 100%) !important;
+  color: #0c6b3d !important;
+  border: 2px solid #51cf66 !important;
+  box-shadow: 0 4px 12px rgba(81, 207, 102, 0.2) !important;
+}
+
+.ux-status-msg.error {
+  background: linear-gradient(135deg, #ffe0e0 0%, #ffd0d0 100%) !important;
+  color: #c92a2a !important;
+  border: 2px solid #ff6b6b !important;
+  box-shadow: 0 4px 12px rgba(255, 107, 107, 0.2) !important;
+}
+
+.ux-status-msg.info {
+  background: linear-gradient(135deg, #d0ebff 0%, #a5d8ff 100%) !important;
+  color: #1864ab !important;
+  border: 2px solid #4dabf7 !important;
+  box-shadow: 0 4px 12px rgba(77, 171, 247, 0.2) !important;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+
+@keyframes ux-panel-slide-in {
+  from {
+    transform: translateX(120%) !important;
+    opacity: 0 !important;
+  }
+
+  to {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+  }
+}
+
+@keyframes ux-fade-in {
+  from {
+    opacity: 0 !important;
+    transform: translateY(-15px) scale(0.95) !important;
+  }
+
+  to {
+    opacity: 1 !important;
+    transform: translateY(0) scale(1) !important;
+  }
+}
+
+/* ============================================
+   RESPONSIVE ADJUSTMENTS
+   ============================================ */
+
+@media (max-width: 768px) {
+  .ux-prospect-panel {
+    width: 90%;
+    right: 5%;
+    left: 5%;
+    top: 10px;
+  }
+}
+
+/* ============================================
+   HOVER STATES & INTERACTIONS
+   ============================================ */
+
+.ux-prospect-panel * {
+  box-sizing: border-box;
+}
+
+/* Prevent panel from being affected by host page styles */
+.ux-prospect-panel,
+.ux-prospect-panel * {
+  all: initial;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+}
+
+/* Re-apply our styles after reset */
+.ux-prospect-panel {
+  all: initial;
+  position: fixed !important;
+  top: 20px !important;
+  right: 20px !important;
+  width: 340px !important;
+  background: #ffffff !important;
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2),
+    0 0 0 1px rgba(0, 0, 0, 0.05) !important;
+  z-index: 2147483647 !important;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif !important;
+  font-size: 14px !important;
+  line-height: 1.5 !important;
+  color: #1a1a1a !important;
+  animation: ux-panel-slide-in 0.3s ease-out !important;
+  display: block !important;
+}
+
+/* ============================================
+   PRINT MEDIA - HIDE PANEL WHEN PRINTING
+   ============================================ */
+
+@media print {
+  .ux-prospect-panel {
+    display: none !important;
+  }
+}
+
+/* ============================================
+   ACCESSIBILITY
+   ============================================ */
+
+.ux-btn:focus,
+.ux-rating-btn:focus,
+.ux-panel-close:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+}
+
+/* Ensure buttons are keyboard accessible */
+.ux-btn:focus-visible,
+.ux-rating-btn:focus-visible {
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}

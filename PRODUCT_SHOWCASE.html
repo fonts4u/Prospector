@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PH UX Prospector - Product Showcase</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: hsl(240, 85%, 65%);
+            --accent: hsl(280, 70%, 60%);
+            --gray-900: hsl(220, 18%, 8%);
+            --bg: #0f111a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: var(--bg);
+            color: white;
+            padding: 80px 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 120px;
+        }
+
+        .showcase-section {
+            width: 1200px;
+            display: flex;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .showcase-section:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+
+        .content {
+            flex: 1;
+        }
+
+        .content h2 {
+            font-size: 48px;
+            font-weight: 800;
+            margin-bottom: 24px;
+            line-height: 1.1;
+            letter-spacing: -2px;
+        }
+
+        .content p {
+            font-size: 20px;
+            color: #aaa;
+            line-height: 1.6;
+            margin-bottom: 32px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .feature-list {
+            list-style: none;
+        }
+
+        .feature-list li {
+            font-size: 18px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ccc;
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        /* Browser Mockup Style */
+        .browser-frame {
+            flex: 1.5;
+            background: #1a1c23;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            overflow: hidden;
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6);
+            height: 600px;
+            position: relative;
+        }
+
+        .browser-header {
+            background: #2a2c33;
+            padding: 12px 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: #555;
+        }
+
+        .dot.red {
+            background: #ff5f56;
+        }
+
+        .url-bar {
+            flex: 1;
+            background: #1a1c23;
+            height: 28px;
+            border-radius: 6px;
+            padding: 0 12px;
+            font-size: 12px;
+            color: #888;
+            display: flex;
+            align-items: center;
+        }
+
+        /* Mock UI Elements */
+        .ph-demo-content {
+            padding: 24px;
+            opacity: 0.3;
+            filter: blur(2px);
+        }
+
+        .ph-item {
+            height: 80px;
+            background: #2a2c33;
+            border-radius: 8px;
+            margin-bottom: 16px;
+        }
+
+        /* Popup Mockup */
+        .popup-mockup {
+            position: absolute;
+            top: 50px;
+            right: 40px;
+            width: 380px;
+            background: white;
+            border-radius: 20px;
+            color: #333;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            font-family: 'Inter', sans-serif;
+            animation: slideIn 0.8s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+        }
+
+        .popup-header {
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            padding: 24px;
+            color: white;
+            text-align: center;
+        }
+
+        .popup-header h3 {
+            font-size: 20px;
+            font-weight: 800;
+        }
+
+        .popup-body {
+            padding: 24px;
+        }
+
+        .mock-btn {
+            width: 100%;
+            padding: 14px;
+            border-radius: 12px;
+            border: none;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            color: white;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .mock-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .mock-stat {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid #e2e8f0;
+        }
+
+        .mock-num {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary);
+        }
+
+        .mock-label {
+            font-size: 10px;
+            color: #64748b;
+            text-transform: uppercase;
+            margin-top: 4px;
+        }
+
+        /* Floating Panel Mockup */
+        .floating-panel {
+            position: absolute;
+            top: 40px;
+            right: 40px;
+            width: 320px;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            color: #333;
+            padding: 24px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            animation: panelFade 1s ease-out;
+        }
+
+        @keyframes panelFade {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+        }
+
+        .panel-title {
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .rating-dots {
+            display: flex;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .rating-dot {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            border: 2px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .rating-dot.active {
+            background: var(--primary);
+            border-color: var(--primary);
+            color: white;
+        }
+
+        .data-box {
+            background: #f8fafc;
+            padding: 16px;
+            border-radius: 12px;
+            margin-bottom: 16px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .data-label {
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            color: #64748b;
+            margin-bottom: 4px;
+        }
+
+        .data-value {
+            font-size: 13px;
+            color: #1e293b;
+            font-weight: 500;
+        }
+
+        .section-tag {
+            background: var(--primary);
+            color: white;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 24px;
+            display: inline-block;
+        }
+
+        .highlight {
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Section 1: Product Hunt Workflow -->
+    <div class="showcase-section">
+        <div class="content">
+            <div class="section-tag">Scenario 01</div>
+            <h2>Smart <span class="highlight">Product Hunt</span> Scraper</h2>
+            <p>One click to open the top 15 SaaS products of the day. Our extension automatically detects company
+                websites and prepares them for evaluation.</p>
+            <ul class="feature-list">
+                <li>Automated tab expansion</li>
+                <li>Website detection fallback</li>
+                <li>Daily prospecting dashboard</li>
+                <li>Real-time progress tracking</li>
+            </ul>
+        </div>
+        <div class="browser-frame">
+            <div class="browser-header">
+                <div class="dots">
+                    <div class="dot red"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="url-bar">producthunt.com</div>
+            </div>
+            <div class="ph-demo-content">
+                <div class="ph-item"></div>
+                <div class="ph-item"></div>
+                <div class="ph-item"></div>
+                <div class="ph-item"></div>
+                <div class="ph-item"></div>
+            </div>
+            <div class="popup-mockup">
+                <div class="popup-header">
+                    <h3>🎯 UX Prospector</h3>
+                </div>
+                <div class="popup-body">
+                    <button class="mock-btn">🚀 Start Prospecting (Top 15)</button>
+                    <div class="mock-stats">
+                        <div class="mock-stat">
+                            <div class="mock-num">124</div>
+                            <div class="mock-label">Processed</div>
+                        </div>
+                        <div class="mock-stat">
+                            <div class="mock-num">42</div>
+                            <div class="mock-label">Shortlisted</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 2: On-Site Evaluation -->
+    <div class="showcase-section">
+        <div class="content">
+            <div class="section-tag">Scenario 02</div>
+            <h2>In-Site <span class="highlight">Evaluation</span> Panel</h2>
+            <p>Don't switch tabs. Evaluate every SaaS product directly on their homepage. Our AI-ready panel extracts
+                headlines, CTAs, and social links instantly.</p>
+            <ul class="feature-list">
+                <li>Automatic data extraction (H1, CTA)</li>
+                <li>One-click LinkedIn founder search</li>
+                <li>Custom UX Score rating</li>
+                <li>Keyboard shortcut support</li>
+            </ul>
+        </div>
+        <div class="browser-frame">
+            <div class="browser-header">
+                <div class="dots">
+                    <div class="dot red"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="url-bar">saas-startup.io</div>
+            </div>
+            <div style="padding: 40px; display: flex; flex-direction: column; gap: 20px;">
+                <div style="height: 60px; width: 300px; background: rgba(255,255,255,0.1); border-radius: 8px;"></div>
+                <div style="height: 100px; width: 500px; background: rgba(255,255,255,0.05); border-radius: 8px;"></div>
+                <div style="height: 40px; width: 150px; background: var(--primary); border-radius: 8px; opacity: 0.5;">
+                </div>
+            </div>
+            <div class="floating-panel">
+                <div class="panel-title">🎯 UX Evaluator</div>
+                <div class="data-box">
+                    <div class="data-label">H1 Headline</div>
+                    <div class="data-value">The OS for Modern Marketing Teams</div>
+                </div>
+                <div class="data-box">
+                    <div class="data-label">Primary CTA</div>
+                    <div class="data-value">Start Free Trial</div>
+                </div>
+                <div class="rating-dots">
+                    <div class="rating-dot">1</div>
+                    <div class="rating-dot">2</div>
+                    <div class="rating-dot">3</div>
+                    <div class="rating-dot active">4</div>
+                    <div class="rating-dot">5</div>
+                </div>
+                <button class="mock-btn" style="margin-bottom: 0;">⭐ Shortlist Prospect</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section 3: CRM & Export -->
+    <div class="showcase-section">
+        <div class="content">
+            <div class="section-tag">Scenario 03</div>
+            <h2>Export & <span class="highlight">Close Leads</span></h2>
+            <p>Review your shortlisted items in a clean, organized view. Export high-fidelity PDF reports or JSON data
+                for your CRM workflow.</p>
+            <ul class="feature-list">
+                <li>Professional PDF reporting</li>
+                <li>CRM-ready JSON export</li>
+                <li>Instant DM text generation</li>
+                <li>Batch founder search</li>
+            </ul>
+        </div>
+        <div class="browser-frame" style="background: #f8fafc;">
+            <div class="browser-header" style="background: #e2e8f0;">
+                <div class="dots">
+                    <div class="dot red"></div>
+                    <div class="dot"></div>
+                    <div class="dot"></div>
+                </div>
+                <div class="url-bar" style="background: white;">Shortlist Manager</div>
+            </div>
+            <div style="padding: 24px; color: #333;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 32px;">
+                    <div style="font-weight: 800; font-size: 24px;">Your Shortlist <span
+                            style="background:var(--primary); color:white; padding: 2px 10px; border-radius: 20px; font-size: 14px;">12</span>
+                    </div>
+                    <div style="display:flex; gap: 8px;">
+                        <div
+                            style="padding: 8px 16px; background: white; border: 1px solid #ddd; border-radius: 8px; font-size: 12px; font-weight: 700;">
+                            Export PDF</div>
+                        <div
+                            style="padding: 8px 16px; background: #333; color:white; border-radius: 8px; font-size: 12px; font-weight: 700;">
+                            JSON</div>
+                    </div>
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px;">
+                    <div
+                        style="padding: 16px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; border-left: 4px solid var(--primary);">
+                        <div style="font-weight: 800; margin-bottom: 4px;">Acme Analytics</div>
+                        <div style="font-size: 12px; color: #64748b;">H1: Data-driven insights in seconds</div>
+                        <div style="margin-top: 12px; height: 30px; background: #f1f5f9; border-radius: 6px;"></div>
+                    </div>
+                    <div
+                        style="padding: 16px; background: white; border: 1px solid #e2e8f0; border-radius: 12px; border-left: 4px solid var(--accent);">
+                        <div style="font-weight: 800; margin-bottom: 4px;">Nebula SaaS</div>
+                        <div style="font-size: 12px; color: #64748b;">H1: Experience cloud orchestration</div>
+                        <div style="margin-top: 12px; height: 30px; background: #f1f5f9; border-radius: 6px;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

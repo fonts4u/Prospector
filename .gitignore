@@ -1,0 +1,12 @@
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Extension local storage (if any)
+*.log
+*.tmp
+
+# Common binary exclusions
+node_modules/
+.vscode/
+.idea/

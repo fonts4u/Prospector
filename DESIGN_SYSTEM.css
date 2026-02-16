@@ -1,0 +1,387 @@
+/* ========================================
+   PRODUCT HUNT UX PROSPECTOR
+   DESIGN SYSTEM QUICK REFERENCE
+   ======================================== */
+
+/* ========================================
+   🎨 COLOR PALETTE (HSL-Based)
+   ======================================== */
+
+/* PRIMARY COLORS */
+--primary-hue: 240;
+--primary: hsl(240, 85%, 65%);
+/* Main brand color - Vibrant blue-purple */
+--primary-light: hsl(240, 85%, 75%);
+/* Lighter variant */
+--primary-dark: hsl(240, 85%, 55%);
+/* Darker variant */
+--primary-glow: hsla(240, 85%, 65%, 0.3);
+/* For shadows and glows */
+
+/* ACCENT COLORS */
+--accent-hue: 280;
+--accent: hsl(280, 70%, 60%);
+/* Complementary color - Rich magenta */
+
+/* STATUS COLORS */
+--success: hsl(150, 65%, 50%);
+/* Fresh green */
+--success-bg: hsl(150, 65%, 95%);
+/* Light green background */
+--success-dark: hsl(150, 70%, 30%);
+/* Dark green text */
+
+--error: hsl(350, 75%, 60%);
+/* Modern red */
+--error-bg: hsl(350, 75%, 95%);
+/* Light red background */
+--error-dark: hsl(350, 70%, 35%);
+/* Dark red text */
+
+--info: hsl(210, 80%, 60%);
+/* Clear blue */
+--info-bg: hsl(210, 80%, 95%);
+/* Light blue background */
+--info-dark: hsl(210, 80%, 30%);
+/* Dark blue text */
+
+--warning: hsl(45, 90%, 60%);
+/* Bright yellow-gold */
+
+/* NEUTRAL GRAYS (50-900 scale) */
+--gray-50: hsl(220, 20%, 98%);
+/* Almost white */
+--gray-100: hsl(220, 15%, 95%);
+/* Very light gray */
+--gray-200: hsl(220, 13%, 91%);
+/* Light gray */
+--gray-300: hsl(220, 10%, 82%);
+/* Medium-light gray */
+--gray-400: hsl(220, 9%, 65%);
+/* Medium gray */
+--gray-500: hsl(220, 9%, 46%);
+/* True medium gray */
+--gray-600: hsl(220, 10%, 30%);
+/* Dark gray */
+--gray-700: hsl(220, 12%, 20%);
+/* Darker gray */
+--gray-800: hsl(220, 15%, 12%);
+/* Very dark gray */
+--gray-900: hsl(220, 18%, 8%);
+/* Almost black */
+
+
+/* ========================================
+   📏 SPACING SYSTEM
+   ======================================== */
+
+--space-xs: 4px;
+/* Extra small - tight spacing */
+--space-sm: 8px;
+/* Small - compact spacing */
+--space-md: 16px;
+/* Medium - default spacing */
+--space-lg: 24px;
+/* Large - generous spacing */
+--space-xl: 32px;
+/* Extra large - dramatic spacing */
+
+
+/* ========================================
+   🔲 BORDER RADIUS
+   ======================================== */
+
+--radius-sm: 8px;
+/* Small - subtle rounding */
+--radius-md: 12px;
+/* Medium - balanced rounding */
+--radius-lg: 16px;
+/* Large - prominent rounding */
+--radius-xl: 20px;
+/* Extra large - dramatic rounding */
+
+
+/* ========================================
+   ☁️ SHADOWS
+   ======================================== */
+
+--shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+/* Subtle elevation */
+--shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+/* Medium elevation */
+--shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+/* High elevation */
+--shadow-glow: 0 0 32px var(--primary-glow);
+/* Brand glow effect */
+
+
+/* ========================================
+   🎭 ANIMATIONS
+   ======================================== */
+
+/* GRADIENT SHIFT - Animated background gradients */
+@keyframes gradient-shift {
+
+    0%,
+    100% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+/* Usage: animation: gradient-shift 8s ease infinite; */
+
+/* FLOAT - Subtle floating motion */
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Usage: animation: float 6s ease-in-out infinite; */
+
+/* PULSE GLOW - Pulsing shadow effect */
+@keyframes pulse-glow {
+
+    0%,
+    100% {
+        box-shadow: 0 4px 20px var(--primary-glow);
+    }
+
+    50% {
+        box-shadow: 0 8px 40px var(--primary-glow);
+    }
+}
+
+/* Usage: animation: pulse-glow 2s ease-in-out infinite; */
+
+/* SLIDE IN UP - Enter from below */
+@keyframes slide-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Usage: animation: slide-in-up 0.4s ease-out; */
+
+
+/* ========================================
+   🎯 TYPOGRAPHY
+   ======================================== */
+
+/* FONT FAMILY */
+font-family: 'Inter',
+-apple-system,
+BlinkMacSystemFont,
+'Segoe UI',
+sans-serif;
+
+/* FONT WEIGHTS */
+/* 400 - Regular */
+/* 500 - Medium */
+/* 600 - Semi-Bold */
+/* 700 - Bold */
+/* 800 - Extra-Bold */
+
+/* SCALE */
+/* Headers: 18-28px, weight 700-800, letter-spacing -0.3 to -0.5px */
+/* Body: 12-14px, weight 400-500, line-height 1.5-1.8 */
+/* Labels: 11-12px, weight 600-700, UPPERCASE, letter-spacing 0.5-1px */
+
+
+/* ========================================
+   🎨 COMMON PATTERNS
+   ======================================== */
+
+/* GLASSMORPHISM CARD */
+.card {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+/* GRADIENT BUTTON */
+.btn-gradient {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    color: white;
+    box-shadow: 0 4px 16px var(--primary-glow);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gradient:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 24px var(--primary-glow);
+}
+
+/* GRADIENT TEXT */
+.gradient-text {
+    background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* RIPPLE EFFECT */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    transform: translate(-50%, -50%);
+    transition: width 0.5s, height 0.5s;
+}
+
+.ripple:hover::before {
+    width: 300px;
+    height: 300px;
+}
+
+
+/* ========================================
+   ⚡ PERFORMANCE TIPS
+   ======================================== */
+
+/*
+1. Use 'transform' and 'opacity' for animations (GPU-accelerated)
+2. Use 'will-change' sparingly for complex animations
+3. Prefer 'cubic-bezier' for smooth, natural easing
+4. Keep animation duration between 200-500ms for UI
+5. Use 'backdrop-filter' only where necessary (can be expensive)
+*/
+
+
+/* ========================================
+   ♿ ACCESSIBILITY
+   ======================================== */
+
+/* FOCUS STATES */
+:focus {
+    outline: 3px solid var(--primary);
+    outline-offset: 3px;
+}
+
+:focus-visible {
+    box-shadow: 0 0 0 4px var(--primary-glow);
+}
+
+/* CONTRAST RATIOS */
+/*
+- Large text (18px+): Minimum 3:1 ✅
+- Normal text: Minimum 4.5:1 ✅
+- Interactive elements: Minimum 3:1 ✅
+*/
+
+
+/* ========================================
+   📱 RESPONSIVE BREAKPOINTS
+   ======================================== */
+
+/* Mobile: < 768px */
+@media (max-width: 768px) {
+    /* Adjust spacing, font sizes, panel widths */
+}
+
+/* Tablet: 768px - 1024px */
+@media (min-width: 768px) and (max-width: 1024px) {
+    /* Optimize for medium screens */
+}
+
+/* Desktop: > 1024px */
+@media (min-width: 1024px) {
+    /* Full desktop experience */
+}
+
+
+/* ========================================
+   🎯 USAGE EXAMPLES
+   ======================================== */
+
+/* Example 1: Premium Card */
+.premium-card {
+    background: linear-gradient(135deg, var(--gray-50) 0%, white 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-lg);
+    box-shadow: var(--shadow-md);
+    border: 2px solid var(--gray-100);
+    transition: all 0.3s ease;
+}
+
+.premium-card:hover {
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Example 2: Status Badge */
+.badge-success {
+    background: var(--success-bg);
+    color: var(--success-dark);
+    border: 2px solid var(--success);
+    padding: var(--space-xs) var(--space-md);
+    border-radius: var(--radius-xl);
+    font-weight: 600;
+    font-size: 12px;
+}
+
+/* Example 3: Section Header */
+.section-header {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--gray-800);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: var(--space-md);
+}
+
+
+/* ========================================
+   🎨 COLOR COMBINATIONS
+   ======================================== */
+
+/* RECOMMENDED PAIRINGS */
+
+/* Primary + White (High contrast) */
+background: var(--primary);
+color: white;
+
+/* Gray-100 + Gray-700 (Subtle contrast) */
+background: var(--gray-100);
+color: var(--gray-700);
+
+/* Gradient Background (Brand colors) */
+background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+
+/* Success State */
+background: var(--success-bg);
+color: var(--success-dark);
+border: 2px solid var(--success);
+
+/* Error State */
+background: var(--error-bg);
+color: var(--error-dark);
+border: 2px solid var(--error);
