@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UX Prospector | Automate Your Product Hunt Outreach</title>
+    <meta name="description"
+        content="The ultimate Chrome extension for SaaS prospecting. Turn Product Hunt launches into a high-octane outreach pipeline.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8E2DE2;
+            --primary-alt: #4A00E0;
+            --accent: #00d2ff;
+            --bg: #05070a;
+            --card-bg: rgba(255, 255, 255, 0.03);
+            --border: rgba(255, 255, 255, 0.08);
+            --text: #ffffff;
+            --text-dim: #94a3b8;
+            --space-lg: 120px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3,
+        .logo {
+            font-family: 'Outfit', sans-serif;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 24px 60px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+        }
+
+        .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #fff;
+        }
+
+        /* Sections */
+        section {
+            padding: var(--space-lg) 60px;
+            position: relative;
+        }
+
+        /* Hero */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(142, 45, 226, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at bottom left, rgba(74, 0, 224, 0.1) 0%, transparent 50%);
+        }
+
+        .grid {
+            position: absolute;
+            inset: 0;
+            background-image: linear-gradient(var(--border) 1px, transparent 1px), linear-gradient(90deg, var(--border) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(circle at center, black, transparent 80%);
+            z-index: 0;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 900px;
+        }
+
+        .badge {
+            background: rgba(142, 45, 226, 0.1);
+            border: 1px solid var(--primary);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 30px;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: 84px;
+            font-weight: 800;
+            letter-spacing: -3px;
+            line-height: 1;
+            margin-bottom: 24px;
+        }
+
+        .gradient {
+            background: linear-gradient(135deg, #A855F7 0%, #6366F1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 22px;
+            color: var(--text-dim);
+            margin-bottom: 48px;
+        }
+
+        .btn-download {
+            background: linear-gradient(135deg, var(--primary), var(--primary-alt));
+            padding: 20px 48px;
+            border-radius: 14px;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            box-shadow: 0 20px 40px rgba(142, 45, 226, 0.3);
+            transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-download:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 30px 60px rgba(142, 45, 226, 0.4);
+        }
+
+        /* Features */
+        .features {
+            background: #080a14;
+        }
+
+        h2 {
+            font-size: 48px;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 12px;
+        }
+
+        .section-desc {
+            text-align: center;
+            color: var(--text-dim);
+            font-size: 18px;
+            margin-bottom: 80px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            padding: 40px;
+            border-radius: 30px;
+            transition: 0.3s;
+        }
+
+        .feature-card:hover {
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            transform: translateY(-10px);
+        }
+
+        .icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            color: var(--text-dim);
+            font-size: 16px;
+        }
+
+        /* Preview area */
+        .preview-wrapper {
+            margin-top: 100px;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 30px;
+            padding: 10px;
+            max-width: 1000px;
+            margin-left: auto;
+            margin-right: auto;
+            overflow: hidden;
+            box-shadow: 0 50px 100px rgba(0, 0, 0, 0.5);
+        }
+
+        .preview-wrapper iframe {
+            width: 1280px;
+            height: 800px;
+            border: none;
+            transform: scale(0.78);
+            transform-origin: top left;
+        }
+
+        .iframe-container {
+            width: 1000px;
+            height: 624px;
+            overflow: hidden;
+            border-radius: 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 60px;
+            border-top: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-size: 24px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .copyright {
+            color: var(--text-dim);
+            font-size: 14px;
+        }
+
+        @media (max-width: 1100px) {
+            h1 {
+                font-size: 60px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-wrapper {
+                display: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <div class="logo">🎯 UX Prospector</div>
+        <div class="nav-links">
+            <a href="#features">Features</a>
+            <a href="https://github.com/fonts4u/Prospector" target="_blank">Github</a>
+            <a href="PRODUCT_SHOWCASE.html" target="_blank">Showcase</a>
+        </div>
+        <a href="https://github.com/fonts4u/Prospector/archive/refs/heads/main.zip" class="btn-download"
+            style="padding: 10px 24px; font-size: 14px;">Get Extension</a>
+    </nav>
+
+    <section class="hero">
+        <div class="grid"></div>
+        <div class="hero-content">
+            <div class="badge">Next-Gen Prospecting</div>
+            <h1>The OS for <br><span class="gradient">SaaS Outreach</span></h1>
+            <p>Automate your workflow from Product Hunt launches to LinkedIn DMs. Built for founders who want to close
+                faster.</p>
+            <a href="https://github.com/fonts4u/Prospector/archive/refs/heads/main.zip" class="btn-download">
+                <span>Download Extension</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M12 15L12 3" stroke="white" stroke-width="2" stroke-linecap="round" />
+                    <path d="M17 10L12 15L7 10" stroke="white" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round" />
+                    <path d="M20 17.5C20 18.8807 16.4183 20 12 20C7.58172 20 4 18.8807 4 17.5" stroke="white"
+                        stroke-width="2" stroke-linecap="round" />
+                </svg>
+            </a>
+        </div>
+
+        <div class="preview-wrapper">
+            <div class="iframe-container">
+                <iframe src="PREMIUM_COVER_V3.html"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <section id="features" class="features">
+        <h2>Built for Speed</h2>
+        <p class="section-desc">Stop manual scraping. Start closing leads.</p>
+
+        <div class="feature-grid">
+            <div class="feature-card">
+                <span class="icon">🚀</span>
+                <h3>Auto Scraper</h3>
+                <p>One-click logic to open the top 15 Product Hunt launches. We handle the tabs, you handle the
+                    strategy.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">💎</span>
+                <h3>UX Audit Panel</h3>
+                <p>Inject our premium evaluator directly onto SaaS hompages. Score clarity and flow without leaving the
+                    site.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">👤</span>
+                <h3>Founder Search</h3>
+                <p>Dedicated search logic to find LinkedIn profiles of founders in seconds. Skip the hunt, find the
+                    decision maker.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">📋</span>
+                <h3>DM Generation</h3>
+                <p>Instant outreach templates customized with the site's actual H1 and CTA data. Professional context,
+                    zero effort.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">📄</span>
+                <h3>PDF Reports</h3>
+                <p>Export your shortlisted prospects into branded, high-fidelity PDF reports for your team or CRM.</p>
+            </div>
+            <div class="feature-card">
+                <span class="icon">⚡</span>
+                <h3>Hotkeys Support</h3>
+                <p>'S' to Shortlist, 'R' to Reject, 'D' to Generate DM. Evaluate a whole Product Hunt day in under 3
+                    minutes.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <span class="footer-logo">🎯 UX Prospector</span>
+        <div class="nav-links" style="justify-content: center; margin-bottom: 40px;">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="mailto:hello@prospector.io">Contact Support</a>
+        </div>
+        <p class="copyright">&copy; 2026 UX Prospector Engine. Built for the modern outreach team.</p>
+    </footer>
+
+</body>
+
+</html>
